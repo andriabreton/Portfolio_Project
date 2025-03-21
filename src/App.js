@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Routes, Route } from 'react-router-dom';
-import HomePage from './components/Homepage';
-import RandomPage from './components/RandomPage';
-import { TEST_GAMES } from './TEST_GAMES';
-import GamePage from './components/GamePage';
+import { useState } from "react";
+import Homepage from "./components/Homepage";
+import RandomPage from "./components/RandomPage";
+import { TEST_GAMES } from "./TEST_GAMES";
+import { Link, Route, Routes } from "react-router-dom";
+import GamePage from "./components/GamePage";
+import { Container, Nav, Navbar } from "react-bootstrap";
+
 
 function App() {
-  const [gamesList] = useState(TEST_GAMES);
+  const [gamesList] = useState(TEST_GAMES)
 
   return (
     <div>
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand as={Link} to="/">My Favorite Games</Navbar.Brand>
           <Nav className="me-auto">
@@ -19,15 +20,14 @@ function App() {
             <Nav.Link as={Link} to="/random">Random</Nav.Link>
           </Nav>
         </Container>
+        <Container className="me-4"></Container>
       </Navbar>
-      <Container className="mt-4">
-        <h1>My Favorite Games</h1>
-        <Routes>
-          <Route path="/" element={<HomePage gamesList={gamesList} />} />
-          <Route path="/random" element={<RandomPage gamesList={gamesList} />} />
-          <Route path="/games/:gameId" element={<GamePage gamesList={gamesList} />} />
-        </Routes>
-      </Container>
+
+      <Routes>
+        <Route path="/" element={<Homepage gamesList={gamesList} />} />
+        <Route path="/random" element={<RandomPage gamesList={gamesList} />} />
+        <Route path="/games/:gameId" element={<GamePage gamesList={gamesList} />} />
+      </Routes>
     </div>
   );
 }

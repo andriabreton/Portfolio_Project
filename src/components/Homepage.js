@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import GameCard from './GameCard';
+import { useState } from "react";
+import GameCard from "./GameCard";
 
 export default function HomePage({ gamesList }) {
-  const [categoryFilter, setCategoryFilter] = useState("Solo Player");
+  const [categoryFilter, setCategoryFilter] = useState("All");
 
-  let filteredGames;
+  let filteredGames
   if (categoryFilter === "All") {
     filteredGames = gamesList;
-  } else {
-    filteredGames = gamesList.filter(game => game.category === categoryFilter);
+  }
+  else {
+    filteredGames = gamesList.filter(g => g.category === categoryFilter)
   }
 
   return (
@@ -18,7 +19,7 @@ export default function HomePage({ gamesList }) {
         <button className="btn btn-primary me-2" onClick={() => setCategoryFilter("Solo Player")}>Solo Player</button>
         <button className="btn btn-primary" onClick={() => setCategoryFilter("2+ Players")}>2+ Players</button>
       </div>
-      {filteredGames.map(g => <GameCard key={g.id} game={g} />)}
+      {filteredGames.map(g => <GameCard game={g} />)}
     </div>
-  );
+  )
 }
